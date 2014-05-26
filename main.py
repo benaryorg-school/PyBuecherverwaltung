@@ -35,6 +35,7 @@ if __name__=='__main__':
     else:
         for buch in buecher:
             print buch
+        print '\nEntered currently unusable text-mode!\nExit with "quit" or EOF!\n\n'
         s=''
         while s.lower()!='quit':
             try:
