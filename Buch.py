@@ -1,5 +1,14 @@
 #!/usr/bin/env python2.7
 
+"""
+
+Written by benaryorg (@benaryorg/binary@benary.org)
+Given away in peace!
+
+License: WTFPL (see LICENSE file of https://git.benary.org/PyBuecherverwaltung)
+
+"""
+
 import re
 
 class Buch(object):

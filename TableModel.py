@@ -1,6 +1,15 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
+"""
+
+Written by benaryorg (@benaryorg/binary@benary.org)
+Given away in peace!
+
+License: WTFPL (see LICENSE file of https://git.benary.org/PyBuecherverwaltung)
+
+"""
+
 class TableModel(QAbstractTableModel): 
 
     def __init__(self,data,headers,parent=None,*largs):
