@@ -5,7 +5,7 @@
 Written by benaryorg (@benaryorg/binary@benary.org)
 Given away in peace!
 
-License: WTFPL (see LICENSE file of https://git.benary.org/PyBuecherverwaltung)
+License: WTFPL (see LICENSE file of git.benary.org/PyBuecherverwaltung)
 
 """
 
