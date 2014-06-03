@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
             print 'Initialising Window'
         self.args=args
         self.data=data
-        self.title='Main Window'
+        self.title=str(self.args.filename)
         self.initUi()
         self.statusBar().showMessage('Ready')
         if args.verbose:
@@ -78,7 +78,9 @@ class MainWindow(QMainWindow):
         return tv
 
     def retranslateUi(self):
-        self.setWindowTitle(self.title)
+        if self.args.verbose:
+            print 'Retranslating UI'
+        self.setWindowTitle(self.title+(' (edited)' if self.modified else ''))
         self.setCentralWidget(self.createTable())
 
     def open(self,*largs):
@@ -88,14 +90,21 @@ class MainWindow(QMainWindow):
         if fname:
             self.data=Buch.createSet(fname,verbose=self.args.verbose)
             self.modified=False
-            self.args.filename=fname
+            self.title=fname
+            self.statusBar().showMessage('Opened')
+            self.titel=fname
             self.retranslateUi()
             
     def save(self,*largs):
         if self.args.verbose:
             print 'Save to %s'%self.args.filename
-        Buch.saveTo(self.args.filename,self.data,verbose=self.args.verbose)
-        self.modified=False
+        if self.args.filename:
+            Buch.saveTo(self.args.filename,self.data,verbose=self.args.verbose)
+            self.modified=False
+            self.statusBar().showMessage('Saved')
+            self.retranslateUi()
+        else:
+            self.saveAs(*largs)
 
     def saveAs(self,*largs):
         if self.args.verbose:
@@ -105,6 +114,9 @@ class MainWindow(QMainWindow):
             Buch.saveTo(fname,self.data,verbose=self.args.verbose)
             self.args.filename=fname
             self.modified=False
+            self.statusBar().showMessage('Saved')
+            self.retranslateUi()
+            
 
     def add(self,*largs):
         if self.args.verbose:
@@ -113,6 +125,7 @@ class MainWindow(QMainWindow):
         if fname:
             self.data=Buch.createSet(fname,data=self.data,verbose=self.args.verbose)
             self.modified=True
+            self.statusBar().showMessage('Added')
             self.retranslateUi()
 
     def chooseFile(self):
